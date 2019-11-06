@@ -18,19 +18,20 @@ class CrawlerController extends Controller
 
 		$urlSearch = "http://readcomicsonline.ru/search?query=" .$keyword;
 
-		$curl = curl_init();
+		// $curl = curl_init();
 
-		curl_setopt_array($curl, array(
-			CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_URL => $urlSearch,
-		));
+		// curl_setopt_array($curl, array(
+		// 	CURLOPT_RETURNTRANSFER => 1,
+		// 	CURLOPT_URL => $urlSearch,
+		// ));
 
-		$resp = curl_exec($curl);
+		// $resp = curl_exec($curl);
 
-		curl_close($curl);
+		// curl_close($curl);
 
-		$arrayResp = json_decode($resp, true);
+		// $arrayResp = json_decode($resp, true);
 
+		$arrayResp = json_decode(file_get_contents($urlSearch), true);
 		$listComics =  $arrayResp['suggestions'];
 
 		return view('index', compact('listComics', 'keyword'));
